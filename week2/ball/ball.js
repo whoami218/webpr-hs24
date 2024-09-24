@@ -1,6 +1,6 @@
 
 const radius = 10;
-const ball = {x:20, y:0, dx: 5, dy: 1};
+const ball = {x:20, y:20, dx: 5, dy: 8};
 let   old  = {x: ball.x, y: ball.y};
 
 function start() {
@@ -15,9 +15,15 @@ function start() {
 }
 
 function nextBoard() {
+    const canvas  = document.getElementById("canvas");
     // keep old ball values for the sake of efficient clearing of the old display
-
+    old = {x: ball.x, y: ball.y}
     // handle ball is hitting the bounds
+    if (ball.y + radius > canvas.height || ball.y - radius < 0) {
+        // ball.x -= ball.dx;
+        ball.dy = -ball.dy;
+    }
+    ball.y += ball.dy;
     //   reverse direction
     //   lose some energy relative to the current inertia (only velocity varies)
 

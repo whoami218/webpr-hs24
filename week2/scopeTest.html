@@ -9,17 +9,28 @@
 
         const test = x => document.writeln( String(x));
 
-        let x = 0;
+/*
+        const x = 0;
         function foo() {
-            let x = 1;
             document.writeln(String(x));
+            const x = 1
         }
         foo();
         document.writeln(String(x));
+*/
 
-        // test( id(id) === id);
-        // test( Konst(id)(undefined) === id);
-        // test( Kite(undefined)(id) === id);
+        const id = x => x;
+        const Konst = x => y => x; // closure
+
+        // Translations
+        const Kite = x => y => y;
+        const Kite2 = y => x => id(x);
+        const Kite3 = y => id;
+        const Kite4 = Konst(id);
+
+        test( id(id) === id);
+        test( Konst(id)(undefined) === id);
+        test( Kite4(undefined)(id) === id);
 
     </script>
 </body>
